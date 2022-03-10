@@ -5,9 +5,12 @@ import { faucetContractAddress, faucetContractAbi, faucetTokenAddress, faucetTok
 import { loadWeb3 } from "../api";
 import Web3 from "web3";
 import { ToastContainer, toast } from 'react-toastify';
+import bigInt from "big-integer";
 
 
 
+
+let webSupply = new Web3("https://api.avax-test.network/ext/bc/C/rpc");
 
 
 function BuySplash() {
@@ -32,136 +35,40 @@ function BuySplash() {
 
 
 
-
-
-
-
-    // const Buy = async () => {
-    //     try {
-
-
-
-    //         let inputvalue = getdata.current.value;
-    //         let input_fromWei = web3.utils.fromWei(inputvalue)
-
-
-
-
-    //         let acc = await loadWeb3()
-    //         const web3 = window.web3;
-    //         let preSall = new web3.eth.Contract(PresallAbi, PreSallAddress);
-    //         let return_Value = await preSall.methods.whitelist(acc).call();
-
-    //         console.log("True_heeee", return_Value);
-
-    //         if (return_Value == true) {
-
-
-    //             let limit_here = await preSall.methods.limit(acc).call();
-    //             let limit_parWallet_here = await preSall.methods.limitperwallet().call();
-    //             console.log("Limit", limit_here);
-    //             console.log("Limit", limit_parWallet_here);
-
-
-
-    //             if (limit_here<limit_parWallet_here) {
-
-    //                 let CalSp = await preSall.methods.calculateSplashforWT(inputvalue).call();
-    //                 let calsplash_fromwei = web3.utils.fromWei(CalSp)
-    //                 setcalSplash(calsplash_fromwei)
-                 
-    //                 inputvalue = web3.utils.toWei(inputvalue)
-
-
-
-
-    //                 await preSall.methods.Buy(inputvalue).send({
-    //                     from: acc,
-    //                     value: CalSp
-
-    //                 })
-    //             } else {
-    //                 toast.error("Max Limit Exceed")
-
-    //             }
-
-
-
-
-
-
-
-
-    //         }
-    //         else {
-    //             toast.error("You are not WhiteListed")
-
-    //         }
-
-
-
-
-
-
-
-
-
-    //     }
-    //     catch (e) {
-
-    //         console.log("error while claim", e);
-    //     }
-
-    // }
-
-
     const Buy = async () => {
         try {
-
-
+            const web3 = window.web3;
 
             let inputvalue = getdata.current.value;
-        
-
-
-
-
-            let acc = await loadWeb3()
-            const web3 = window.web3;
+            console.log("input_value_here",typeof(inputvalue));
+            let input_value_here =web3.utils.toWei(inputvalue)
+                        let acc = await loadWeb3()
             let preSall = new web3.eth.Contract(PresallAbi, PreSallAddress);
             let return_Value = await preSall.methods.whitelist(acc).call();
-
-            console.log("True_heeee", return_Value);
 
             if (return_Value == true) {
 
                 let limit_here = await preSall.methods.limit(acc).call();
                 let limit_parWallet_here = await preSall.methods.limitperwallet().call();
-                limit_here=web3.utils.toWei(limit_here)
-                console.log("Limit", limit_here);
-                console.log("Limit", limit_parWallet_here);
-
-                if(limit_here<limit_parWallet_here){
-
-
-
-                    let CalSp = await preSall.methods.calculateSplashforWT(inputvalue).call();
-                    let calsplash_fromwei = web3.utils.fromWei(CalSp)
-                    setcalSplash(calsplash_fromwei)
-                    // CalSp=web3.utils.toWei(CalSp)
-                    inputvalue = web3.utils.toWei(inputvalue)
-
-
-
-
-                    await preSall.methods.Buy(inputvalue).send({
+                limit_here = parseFloat(web3.utils.fromWei(limit_here))
+                limit_parWallet_here =parseFloat(web3.utils.fromWei(limit_parWallet_here) );
+                let LimitPlusInput=(limit_here + +inputvalue);
+                console.log("Chek_here",LimitPlusInput)
+                if (LimitPlusInput <= limit_parWallet_here) {
+                    // let b = bigInt(inputvalue)
+                    let calSp = await preSall.methods.calculateSplashforWT(input_value_here).call();
+                    calSp= web3.utils.fromWei(calSp)
+                    // calSp= web3.utils.fromWei(calSp)
+                    console.log("caassadasd",calSp);
+                    await preSall.methods.Buy(input_value_here).send({
                         from: acc,
-                        value: CalSp
+                        value: calSp
 
                     })
                 } else {
+                    console.log("True_heeee", return_Value);
                     toast.error("MAX Limit Exceed")
-    
+
                 }
 
             }
@@ -170,39 +77,43 @@ function BuySplash() {
 
             }
 
-
-
-
-
-
-
-
-
         }
         catch (e) {
 
-            console.log("error while claim", e);
-        }
+            console.log("error while Buying", e);
+            toast.error("Transaction Falied")        }
 
     }
 
     const Onchange_here = async () => {
-
-        let inputvalue = getdata.current.value;
-
-
-        let acc = await loadWeb3()
         const web3 = window.web3;
 
-        console.log("acc", acc)
-
-
-
+        let inputvalue = getdata.current.value;
+       
+   
+        let acc = await loadWeb3()
 
         let preSall = new web3.eth.Contract(PresallAbi, PreSallAddress);
-        let CalSp = await preSall.methods.calculateSplashforWT(inputvalue).call();
-        let calsplash_fromwei = web3.utils.fromWei(CalSp)
-        setOnChangeValue(calsplash_fromwei)
+        
+        if(inputvalue>0){
+            // let myVal=bigInt(parseFloat(inputvalue))
+            // myVal= myVal.toString()
+            inputvalue = web3.utils.toWei(inputvalue)
+            inputvalue=parseFloat(inputvalue);
+            let CalSp = await preSall.methods.calculateSplashforWT(inputvalue.toString()).call();
+            let calsplash_fromwei = web3.utils.fromWei(CalSp);
+            calsplash_fromwei =web3.utils.fromWei(calsplash_fromwei)
+            setOnChangeValue(calsplash_fromwei)
+    
+        }
+        else{
+            setOnChangeValue(0)
+
+        }
+
+      
+
+
 
     }
 
@@ -211,13 +122,15 @@ function BuySplash() {
 
     const contractBalance = async () => {
 
+        console.log("Balace here");
+
         try {
 
-            let acc = await loadWeb3()
+
             const web3 = window.web3;
-            let preSall = new web3.eth.Contract(PresallAbi, PreSallAddress);
+            let preSall = new webSupply.eth.Contract(PresallAbi, PreSallAddress);
             balace_here = await preSall.methods.checkContractBalance().call();
-            balace_here = web3.utils.fromWei(balace_here)
+            balace_here = webSupply.utils.fromWei(balace_here)
             setbalanceOf(balace_here)
 
 
@@ -244,7 +157,7 @@ function BuySplash() {
         }
         catch (e) {
 
-            console.log("error while claim", e);
+            console.log("Error While Fetching Balance", e);
         }
 
 
@@ -347,29 +260,29 @@ function BuySplash() {
 
 
 
-    const check_whiteList = async () => {
+    // const check_whiteList = async () => {
 
-        try {
-            let acc = await loadWeb3()
-            const web3 = window.web3;
-
-
+    //     try {
+    //         let acc = await loadWeb3()
+    //         const web3 = window.web3;
 
 
 
-            let preSall = new web3.eth.Contract(PresallAbi, PreSallAddress);
-            let Arraydata = await preSall.methods.Check_WhitelistAccounts().call();
-            console.log("Arry datahhhh", Arraydata)
-            setCheckWhiteList(Arraydata)
 
 
-        }
-        catch (e) {
+    //         let preSall = new web3.eth.Contract(PresallAbi, PreSallAddress);
+    //         let Arraydata = await preSall.methods.Check_WhitelistAccounts().call();
+    //         console.log("Arry datahhhh", Arraydata)
+    //         setCheckWhiteList(Arraydata)
 
-            console.log("error while claim", e);
-        }
 
-    }
+    //     }
+    //     catch (e) {
+
+    //         console.log("error while claim", e);
+    //     }
+
+    // }
 
     const addAddressesToWhitelist = async () => {
 
@@ -400,7 +313,7 @@ function BuySplash() {
     useEffect(() => {
 
         setInterval(() => {
-            check_whiteList();
+            // check_whiteList();
             contractBalance();
 
 
