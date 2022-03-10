@@ -40,7 +40,13 @@ function BuySplash() {
             const web3 = window.web3;
 
             let inputvalue = getdata.current.value;
-            console.log("input_value_here",typeof(inputvalue));
+
+if(inputvalue>0)
+{
+
+
+
+    console.log("input_value_here",typeof(inputvalue));
             let input_value_here =web3.utils.toWei(inputvalue)
                         let acc = await loadWeb3()
             let preSall = new web3.eth.Contract(PresallAbi, PreSallAddress);
@@ -76,6 +82,10 @@ function BuySplash() {
                 toast.error("You are not WhiteListed")
 
             }
+}else{
+    toast.error("Entered Value Must be greater than 0")
+}
+            
 
         }
         catch (e) {
