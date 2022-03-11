@@ -73,7 +73,7 @@ function BuySplash() {
 
                 let contractBal = await swapToken.methods.contractbalance().call();
                 let withOutDecimal = web3.utils.fromWei(contractBal);
-                if( withOutDecimal >=  balValue){
+                if( parseFloat(withOutDecimal) >=  parseFloat(balValue)){
                   let dummy =  await xContract.methods.approve(PreSallAddress, web3.utils.toWei(balValue)).send({
                         from:acc
                     })
