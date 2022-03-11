@@ -6,6 +6,7 @@ import { loadWeb3 } from "../api";
 import Web3 from "web3";
 import { ToastContainer, toast } from 'react-toastify';
 import bigInt from "big-integer";
+// import { useTranslation } from "react-i18next";
 
 
 
@@ -14,7 +15,7 @@ let webSupply = new Web3("https://api.avax.network/ext/bc/C/rpc");
 
 
 function BuySplash() {
-
+    // const { t, i18n } = useTranslation();
     let [calsplash, setcalSplash] = useState(0)
     let [balanceOf, setbalanceOf] = useState(0)
     let [CheckWhiteList, setCheckWhiteList] = useState([])
@@ -403,9 +404,9 @@ if(inputvalue>0)
                                 <div className="container">
                                     <div className="row">
                                         <div className="col">
-                                            <span class="luck-title notranslate" >
-                                                SWAP
-                                                {/* {t("BuySplash.1")} */}
+                                            <span class="luck-title notranslate fw-bold" >
+                                                
+                                                {t("SWAP.1")}
                                             </span>
                                         </div>
                                     </div>
@@ -516,7 +517,7 @@ if(inputvalue>0)
                             </div> */}
                         
 
-                        <div className="container col-6 col-xl-6 col-lg-6 mb-4">
+                        <div className="container col-12 col-xl-6 col-lg-6 mb-12">
                             <div className='row'>
                                 <div className='col'>
                                     <div className="card  text-white"
@@ -527,7 +528,7 @@ if(inputvalue>0)
                                                     <h3>
                                                         <p className="notrans.late fst-italic text-center" style={{ fontSize: "30px" }}>
                                                             {/* {t("PreSale.1")} */}
-                                                            SWAP
+                                                            {t("SWAP.1")}
                                                             </p>
                                                     </h3>
                                                 </div>
@@ -549,7 +550,7 @@ if(inputvalue>0)
                                                             <div className='row'>
 
                                                             
-                                                            <div className='col-10'>
+                                                            <div className='col-lg-10 col-8 col-sm-10'>
                                                                 <input
 
                                                                     ref={getdata}
@@ -564,7 +565,7 @@ if(inputvalue>0)
                                                                 />
                                                                 
                                                             </div>
-                                                            <div className='col-2'>
+                                                            <div className='col-1'>
                                                                 <button className='btn btn-light' 
                                                                 onClick={getMaxBal}
                                                                 >MAX</button></div>
@@ -609,7 +610,7 @@ if(inputvalue>0)
                                                             <button className='btn fst-italic  mt-2 fw-bold p-2' size="lg" style={{ backgroundColor: "#86ad74", color: "white", fontSize: "25px" }} 
                                                             onClick={() => buySwap()} >
                                                                 {/* {t("BUY SPLASH")} */}
-                                                                SWAP
+                                                                {t("SWAP.1")}
                                                             </button>
 
                                                         </div>

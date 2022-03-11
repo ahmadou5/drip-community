@@ -49,7 +49,7 @@ connectWallet();
                 style={{ color: "white" }}
                 className="navbarlogo"
               >
-                <img src={logo} width="220px"/>
+                <img src={logo} width="185px"/>
               </Navbar.Brand>
             </Link>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -73,7 +73,7 @@ connectWallet();
                 </Link>
                 <Link to="/swap" style={{ textDecoration: "none" }}>
                   <Nav.Link href="#swap" className=" " id="navbartext">
-                  SWAP
+                  {t("SWAP.1")}
                   </Nav.Link>
                 </Link>
               </Nav>
@@ -87,7 +87,7 @@ connectWallet();
                   eventKey={5}
                   href="#memes"
                   id="navbartext"
-                  id="navbartext"
+                  
                 >
                    {t('SplashDAO.1')}
                 </Nav.Link>

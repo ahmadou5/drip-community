@@ -960,7 +960,7 @@ const Facuet = ({ oneTokenPrice }) => {
                   <div className="container">
                     <div className="row">
                       <div className="col">
-                        <span className="luck-title notranslate">
+                        <span className="luck-title fw-bold notranslate">
                           {t("THETAP.1")}
                         </span>
                       </div>
@@ -2064,10 +2064,9 @@ const Facuet = ({ oneTokenPrice }) => {
                 <p id="referral" />
                 <p className="text-white fst-italic" style={{ fontSize: "20px" }}>
                   {t(
-                    "IfthereiseverasituationwherethetaxpoolisnotenoughtopaySplashrewardsnewSplashwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheSplashnetwork,theprobabilitythatthesystemwillneedtomintnewSplashtopayrewardsisextremelylow.SinceSplashdepositedintoTheTaparesenttoaburnaddressandSplashisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,SplashistheonlydeflationarydailyROIplatform.ThebeststrategyforSplashistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofSplashDAOheldinyourwallet.1"
+                    "IfthereiseverasituationwherethetaxpoolisnotenoughtopaySplashrewardsnewSplashwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheSplashnetwork,theprobabilitythatthesystemwillneedtomintnewSplashtopayrewardsisextremelylow.SinceSplashdepositedintoTheTaparesenttoaburnaddressandSplashisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,SplashistheonlydeflationarydailyROIplatform.ThebeststrategyforSplashistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofWAVETokenheldinyourwallet.1"
                   )}
-                  : 1-2, 2-3, 3-5, 4-8, 5-13, 6-21, 7-34, 8-55, 9-89, 10-144,
-                  11-233, 12-377, 13-610, 14-987, 15-1597
+                  : 1-5000, 2-10000, 3-200000, 4-30000, 5-400000, 6-500000, 7-600000, 8-750000, 9-850000, 10-100000, 11-1100000, 12-1200000, 13-135000, 14-190000,              
                 </p>
               </div>
             </div>
