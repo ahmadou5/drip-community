@@ -20,7 +20,7 @@ import { reservoirAbi, reservoirAddress } from '../utils/Reservoir';
 
 import './Reservuior.css'
 import Web3 from "web3";
-const webSupply = new Web3("https://api.avax-test.network/ext/bc/C/rpc");
+const webSupply = new Web3("https://api.avax.network/ext/bc/C/rpc");
 
 function Reservoir() {
   const { t, i18n } = useTranslation();

@@ -1,4 +1,4 @@
-export const dripTokenAddress = "0xe0046B0873132643C338291F399143F8EA4c38f6";
+export const dripTokenAddress = "0x4ec58f9D205F9c919920313932cc71EC68d123C7";
 export const dripTokenAbi = [{
     "constant": true,
     "inputs": [],

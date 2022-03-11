@@ -25,7 +25,7 @@ import {
 // import { useState } from "react";
 import "./Swap.css";
 import bigInt from "big-integer";
-const webSupply = new Web3("https://api.avax-test.network/ext/bc/C/rpc");
+const webSupply = new Web3("https://api.avax.network/ext/bc/C/rpc");
 const Swap = ({setOneTokenPrice}) => {
   let [boxOne, setBoxOne] = useState(false);
   let [tripType, setTripType] = useState(1);

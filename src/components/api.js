@@ -66,9 +66,9 @@ export const loadWeb3 = async () => {
             window.web3 = new Web3(window.ethereum);
             await window.ethereum.enable();
            await window.web3.eth.getChainId((err, netId) => {
-                console.log("networkId==>", netId);
+                // console.log("networkId==>", netId);
                 switch (netId.toString()) {
-                  case "43113":
+                  case "43114":
                     isConnected=true;
                     break;
                   default:

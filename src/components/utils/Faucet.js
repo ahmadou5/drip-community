@@ -1,4 +1,4 @@
-export const faucetContractAddress = "0xdf783060cAc5E6b6A5Ef4F69812506e5B695DC59";
+export const faucetContractAddress = "0x4b597058b2c10710420d27073a7d83Aece517219";
 export const faucetContractAbi = [{
 	"anonymous": false,
 	"inputs": [{
@@ -372,7 +372,7 @@ export const faucetContractAbi = [{
 			"name": "entered_address",
 			"type": "address"
 		}],
-		"internalType": "struct Faucet.User[]",
+		"internalType": "struct TheTap.User[]",
 		"name": "newUserData",
 		"type": "tuple[]"
 	}, {
@@ -389,7 +389,7 @@ export const faucetContractAbi = [{
 			"name": "last_airdrop",
 			"type": "uint256"
 		}],
-		"internalType": "struct Faucet.Airdrop[]",
+		"internalType": "struct TheTap.Airdrop[]",
 		"name": "newUserAirdropData",
 		"type": "tuple[]"
 	}],
@@ -1134,7 +1134,8 @@ export const faucetContractAbi = [{
 	"stateMutability": "view",
 	"type": "function"
 }]
-export const faucetTokenAddress = "0xe0046B0873132643C338291F399143F8EA4c38f6";
+
+export const faucetTokenAddress = "0x4ec58f9D205F9c919920313932cc71EC68d123C7";
 export const faucetTokenAbi = [{
 	"constant": true,
 	"inputs": [],

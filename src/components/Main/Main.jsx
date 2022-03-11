@@ -11,7 +11,7 @@ import axios from 'axios'
 import { dripTokenAddress, dripTokenAbi } from '../utils/DripToken';
 import { loadWeb3 } from "../api"
 import Web3 from "web3";
-const webSupply = new Web3("https://api.avax-test.network/ext/bc/C/rpc");
+const webSupply = new Web3("https://api.avax.network/ext/bc/C/rpc");
 
 const Main = () => {
   const { t, i18n } = useTranslation();
@@ -124,7 +124,7 @@ const Main = () => {
                       style={{ color: "#7c625a", fontSize: "20px" }}
                       type="button"
                       className="btn btn-outline-light btn-block m-3"
-                      onClick={() => tradeNvigate("/swap")}
+                      onClick={() => tradeNvigate("/TheWELL")}
                     >
                       <b>{t("TRADE.1")}</b>
                     </button>
@@ -138,7 +138,7 @@ const Main = () => {
                       }}
                       type="button"
                       className="btn btn-outline-light btn-block m-3"
-                      onClick={() => stakeNavigate("/facuet")}
+                      onClick={() => stakeNavigate("/THETAP")}
                     >
                       <b>{t("STAKE.1")}</b>
                     </button>
@@ -152,7 +152,7 @@ const Main = () => {
                       }}
                       type="button "
                       className="btn btn-outline-light btn-block m-3"
-                      onClick={() => farmNavigate("/reservoir")}
+                      onClick={() => farmNavigate("/THESHORE")}
                     >
                       <b>{t("LIQUIDITYFARM.1")}</b>
                     </button>

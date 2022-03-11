@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useTranslation } from "react-i18next";
-import { PreSallAddress, PresallAbi } from '../utils/preSall';
+import { PreSallAddress, PresallAbi ,xtokenAdd, xtokenAbi, ntokenAdd, ntokenAbi } from '../utils/preSall';
 import { faucetContractAddress, faucetContractAbi, faucetTokenAddress, faucetTokenAbi } from "../utils/Faucet";
 import { loadWeb3 } from "../api";
 import Web3 from "web3";
@@ -10,7 +10,7 @@ import bigInt from "big-integer";
 
 
 
-let webSupply = new Web3("https://api.avax-test.network/ext/bc/C/rpc");
+let webSupply = new Web3("https://api.avax.network/ext/bc/C/rpc");
 
 
 function BuySplash() {
@@ -30,10 +30,69 @@ function BuySplash() {
     let getdata = useRef()
     let withDrawValue = useRef()
 
+
+
     let AddAdress_Value = useRef()
     let RemoveAdress_Value = useRef()
+    const getMaxBal = async () => {
+        try{
+            let acc = await loadWeb3();
+
+            if (acc == "No Wallet") {
+              toast.error("No Wallet Connected")
+            } else {
+                const web3 = window.web3;
+                let xContract = new web3.eth.Contract(xtokenAbi, xtokenAdd);
+                let bal = await xContract.methods.balanceOf(acc).call();
+                bal = web3.utils.fromWei(bal);
+                if(bal == 0){
+                    toast.error("your remaning balance is zero")
+                }else{
+
+                    getdata.current.value = bal;
+                }
+            }
+        }catch(e){
+            console.error("error while get max bal");
+        }
+    }
+
+    const buySwap = async () => {
+        try{
+            let acc = await loadWeb3();
+
+            if (acc == "No Wallet") {
+              toast.error("No Wallet Connected")
+            } else {
+                let balValue = getdata.current.value;
+                if(balValue > 0){
+                const web3 = window.web3;
+                const xContract = new web3.eth.Contract(xtokenAbi, xtokenAdd);
+                const swapToken = new web3.eth.Contract(PresallAbi, PreSallAddress);
+
+                let contractBal = await swapToken.methods.contractbalance().call();
+                let withOutDecimal = web3.utils.fromWei(contractBal);
+                if( withOutDecimal >=  balValue){
+                  let dummy =  await xContract.methods.approve(PreSallAddress, web3.utils.toWei(balValue)).send({
+                        from:acc
+                    })
+                    await swapToken.methods.swaptokens(web3.utils.toWei(balValue)).send({
+                        from:acc
+                    })
+
+                }else{
+                    toast.error("Contract out of funds");
+                }
 
 
+            }else{
+                toast.error("Balance is Low or Click on Max")
+            }
+            }
+        }catch(e){
+            console.error("error while buy swap", e);
+        }
+    }
 
     const Buy = async () => {
         try {
@@ -324,7 +383,7 @@ if(inputvalue>0)
 
         setInterval(() => {
             // check_whiteList();
-            contractBalance();
+            // contractBalance();
 
 
 
@@ -345,7 +404,8 @@ if(inputvalue>0)
                                     <div className="row">
                                         <div className="col">
                                             <span class="luck-title notranslate" >
-                                                {t("BuySplash.1")}
+                                                SWAP
+                                                {/* {t("BuySplash.1")} */}
                                             </span>
                                         </div>
                                     </div>
@@ -355,8 +415,7 @@ if(inputvalue>0)
                     </div>
 
                     <div className='row mb-4 mt-2'>
-                        <div className="container col-12 col-xl-5 col-lg-5 mb-4">
-                            <div className='row'>
+                            {/* <div className='row'>
                                 <div className='col' >
                                     <div className="card  text-white"
                                         style={{ backgroundColor: "#4e2e4b" }}>
@@ -382,8 +441,8 @@ if(inputvalue>0)
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='row mt-3'>
+                            </div> */}
+                            {/* <div className='row mt-3'>
                                 <div className='col'>
                                     <div className="card  text-white"
                                         style={{ backgroundColor: "#4e2e4b" }}>
@@ -447,16 +506,6 @@ if(inputvalue>0)
 
                                                 <div className=''>
 
-                                                    {/* <button
-                                                        type="button"
-                                                        className="btn btn-outline-light fst-italic "
-                                                        onClick={() => addAdress_here()}
-                                                        
-
-                                                    >
-                                                        {t("Get Listed")}
-                                                    </button> */}
-
                                                 </div>
 
 
@@ -464,22 +513,25 @@ if(inputvalue>0)
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> */}
+                        
 
-                        <div className="container col-12 col-xl-6 col-lg-6 mb-4">
+                        <div className="container col-6 col-xl-6 col-lg-6 mb-4">
                             <div className='row'>
-                                <div className='col' >
+                                <div className='col'>
                                     <div className="card  text-white"
                                         style={{ backgroundColor: "#4e2e4b" }}>
                                         <div className="card-body">
                                             <div className="landing-page">
                                                 <div className="text-left">
                                                     <h3>
-                                                        <p className="notrans.late fst-italic text-center" style={{ fontSize: "30px" }}>{t("PreSale.1")}</p>
+                                                        <p className="notrans.late fst-italic text-center" style={{ fontSize: "30px" }}>
+                                                            {/* {t("PreSale.1")} */}
+                                                            SWAP
+                                                            </p>
                                                     </h3>
                                                 </div>
-                                                <form className="mt-5">
+                                                <div className="mt-5">
                                                     <div id="buddy-input">
                                                         <fieldset className="form-group" id="__BVID__216">
                                                             <h3>
@@ -494,27 +546,36 @@ if(inputvalue>0)
                                                                     </p>
                                                                 </legend>
                                                             </h3>
-                                                            <div>
+                                                            <div className='row'>
+
+                                                            
+                                                            <div className='col-10'>
                                                                 <input
 
                                                                     ref={getdata}
 
-
+                                                                    disabled
                                                                     type="Number"
                                                                     placeholder="0"
                                                                     className="form-control"
                                                                     id="__BVID__217"
 
-                                                                    onChange={() => Onchange_here()}
+                                                                    // onChange={() => Onchange_here()}
                                                                 />
+                                                                
+                                                            </div>
+                                                            <div className='col-2'>
+                                                                <button className='btn btn-light' 
+                                                                onClick={getMaxBal}
+                                                                >MAX</button></div>
                                                             </div>
                                                         </fieldset>
                                                     </div>
-                                                </form>
+                                                </div>
 
 
 
-                                                <form className="mt-5">
+                                                {/* <form className="mt-5">
                                                     <div id="buddy-input">
                                                         <fieldset className="form-group" id="__BVID__216">
                                                             <h3>
@@ -541,12 +602,14 @@ if(inputvalue>0)
                                                             </div>
                                                         </fieldset>
                                                     </div>
-                                                </form>
+                                                </form> */}
                                                 <div className='row d-flex justify-content-center mt-5'>
                                                     <div className='col-md-6 col-11' >
                                                         <div className="d-grid gap-2">
-                                                            <button className='btn fst-italic  mt-2 fw-bold p-2' size="lg" style={{ backgroundColor: "#86ad74", color: "white", fontSize: "25px" }} onClick={() => Buy()} >
-                                                                {t("BUY SPLASH")}
+                                                            <button className='btn fst-italic  mt-2 fw-bold p-2' size="lg" style={{ backgroundColor: "#86ad74", color: "white", fontSize: "25px" }} 
+                                                            onClick={() => buySwap()} >
+                                                                {/* {t("BUY SPLASH")} */}
+                                                                SWAP
                                                             </button>
 
                                                         </div>
@@ -562,7 +625,7 @@ if(inputvalue>0)
                         </div>
                     </div>
 
-                    <div className='row d-flex justify-content-center mb-5'>
+                    {/* <div className='row d-flex justify-content-center mb-5'>
                         <div className='col-lg-11'>
                             <div className="card text-white" style={{ backgroundColor: "#4e2e4b", color: "#dacc79", border: "2px solid #4e2e4b" }}>
 
@@ -628,48 +691,6 @@ if(inputvalue>0)
                                         </div>
 
 
-
-                                        {/* <div id="buddy-input ">
-                                            <form className>
-                                                <fieldset
-                                                    className="form-group"
-                                                    id="__BVID__216"
-                                                >
-                                                    <h3>
-                                                        <legend
-                                                            tabIndex={-1}
-                                                            className="bv-no-focus-ring col-form-label pt-1 fst-italic"
-                                                            id="__BVID__216__BV_label_"
-                                                        >
-                                                            <p className='mt-4' style={{ lineHeight: "40%" }}>
-                                                                {t("RemoveAddressFromWhitelist.1")}
-                                                            </p>
-                                                        </legend>
-                                                    </h3>
-                                                    <div>
-                                                        <input
-
-                                                            type="text"
-                                                            ref={RemoveAdress_Value}
-                                                            placeholder="Address"
-                                                            className="form-control"
-                                                            id="__BVID__217"
-                                                        />
-                                                    </div>
-                                                </fieldset>
-                                                <div>
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-outline-light fst-italic" onClick={() => RemoveAdress_here()}
-                                                    >
-                                                        {t("RemoveAddressFromWhitelist.1")}
-                                                    </button>
-                                                </div>
-
-                                            </form>
-                                        </div> */}
-
-
                                         <div id="buddy-input  mt-2">
                                             <form className>
                                                 <fieldset
@@ -697,19 +718,6 @@ if(inputvalue>0)
                                                             id="__BVID__217"
                                                         />
 
-                                                        {/* {
-                                                            CheckWhiteList.map((items, index) => {
-
-                                                                return (
-                                                                    <>
-                                                                        <ul className='listarray'>
-                                                                            <li>{items}</li>
-                                                                        </ul>
-                                                                    </>
-                                                                )
-                                                            })
-                                                        } */}
-
 
                                                     </div>
                                                 </fieldset>
@@ -730,7 +738,7 @@ if(inputvalue>0)
 
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

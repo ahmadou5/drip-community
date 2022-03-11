@@ -17,7 +17,7 @@ import price from 'crypto-price';
 import Web3 from "web3";
 import Table from 'react-bootstrap/Table'
 import { indexOf } from "lodash";
-const webSupply = new Web3("https://api.avax-test.network/ext/bc/C/rpc");
+const webSupply = new Web3("https://api.avax.network/ext/bc/C/rpc");
 
 
 const Facuet = ({ oneTokenPrice }) => {
@@ -1084,7 +1084,7 @@ const Facuet = ({ oneTokenPrice }) => {
                     </button>
                     <Link
                       style={{ color: "#7c625a", fontSize: "19px" }}
-                      to="/swap" >
+                      to="/TheWELL" >
                       {t("GetSplash.1")}
                     </Link>
                     <a target="_blank" href="https://www.youtube.com/watch?v=TOJg308iREw" style={{ color: "#7c625a", fontSize: "19px" }}>

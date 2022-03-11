@@ -28,7 +28,6 @@ let acc= await loadWeb3();
 setAccount(acc);
 let ac= acc? acc.substring(0, 6) + "..." + acc.substring(acc.length - 6):
 setStrAcc(ac);
-console.log(acc);
   }catch(error){
     console.log("while connecting",error )
   }
@@ -56,25 +55,25 @@ connectWallet();
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto ">
-                <Link to="/swap" style={{ textDecoration: "none" }}>
+                <Link to="/TheWELL" style={{ textDecoration: "none" }}>
                   {" "}
-                  <Nav.Link href="#swap" className=" " id="navbartext">
+                  <Nav.Link href="#TheWELL" className=" " id="navbartext">
                   {t('TheWell.1')}
                   </Nav.Link>
                 </Link>
-                <Link to="/facuet" style={{ textDecoration: "none" }}>
-                  <Nav.Link href="#facuet" className=" " id="navbartext">
+                <Link to="/THETAP" style={{ textDecoration: "none" }}>
+                  <Nav.Link href="#THETAP" className=" " id="navbartext">
                   {t('THETAP.1')}
                   </Nav.Link>
                 </Link>
-                <Link to="/reservoir" style={{ textDecoration: "none" }}>
-                  <Nav.Link href="#reservoir" className=" " id="navbartext">
+                <Link to="/THESHORE" style={{ textDecoration: "none" }}>
+                  <Nav.Link href="#THESHORE" className=" " id="navbartext">
                   {t('THESHORE.1')}
                   </Nav.Link>
                 </Link>
-                <Link to="/buySplash" style={{ textDecoration: "none" }}>
-                  <Nav.Link href="#buySplash" className=" " id="navbartext">
-                  Buy Splash
+                <Link to="/swap" style={{ textDecoration: "none" }}>
+                  <Nav.Link href="#swap" className=" " id="navbartext">
+                  SWAP
                   </Nav.Link>
                 </Link>
               </Nav>

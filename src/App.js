@@ -39,14 +39,14 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Main />} />
-          <Route exact path="/swap" element={<Swap
+          <Route exact path="/TheWELL" element={<Swap
           setOneTokenPrice={setOneTokenPrice}
           />} />
-          <Route exact path="/facuet" element={<Facuet
+          <Route exact path="/THETAP" element={<Facuet
           oneTokenPrice={oneTokenPrice}
           />} />
-          <Route exact path="/reservoir" element={<Reservoir />} />
-          <Route exact path="/buySplash" element={<BuySplash/>}/>
+          <Route exact path="/THESHORE" element={<Reservoir />} />
+          <Route exact path="/swap" element={<BuySplash/>}/>
           <Route exact path="/whitepaper" element={<WhitePaper/>}  />
           <Route exact path="/tutorial" element={<Tutorial/>} />
         </Routes>
