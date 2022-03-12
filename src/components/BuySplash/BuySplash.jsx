@@ -404,7 +404,7 @@ if(inputvalue>0)
                                 <div className="container">
                                     <div className="row">
                                         <div className="col">
-                                            <span class="luck-title notranslate fw-bold" >
+                                            <span class="luck-title notranslate fw-bold" style={{fontFamily:"Jost"}}>
                                                 
                                                 {t("SWAP.1")}
                                             </span>

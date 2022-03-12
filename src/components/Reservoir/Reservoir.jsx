@@ -345,7 +345,8 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
                   <div className="container ">
                     <div className="row ">
                       <div className="col">
-                        <span className="luck-title notranslate fw-bold">
+                        <span className="luck-title notranslate fw-bold" style={{fontFamily:"Jost"}}>
+                          
                           {t("THESHORE.1")}
                         </span>
                       </div>
@@ -586,7 +587,9 @@ if(buyInput.current.value != "" && buyInput.current.value != undefined){
             </div>
             <div className="row mb-4 mt-2">
               <div className="container col-10 text-center">
-                <h1 className="fw-bold">{t("Stats.1")}</h1>
+                <h1 className="fw-bold" style={{fontFamily:"Jost"}}>
+                  {t("Stats.1")}
+                  </h1>
                 <p className="text-white mb-4" style={{ fontSize: "20px" }}>
                   {t("TheShoreisTheSplashNetwork’ssolutionforplayersthatwantbenefitfromnoninflationaryyieldfarmingthroughaddingliquiditytoSplash.Herearethenumbers.1")}...
                 </p>

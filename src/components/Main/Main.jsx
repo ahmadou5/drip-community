@@ -80,7 +80,9 @@ const Main = () => {
                   <div className="container">
                     <div className="row">
                       <div className="col">
-                        <span class="luck-title notranslate">
+                        <span className="luck-title notranslate"  
+                        style={{fontFamily:"Jost"}}
+                        >
                           <b> {t("SplashNETWORK.1")}</b>
                         </span>
                       </div>
@@ -171,8 +173,12 @@ const Main = () => {
 
             <div className="row mb-4 mt-2">
               <div className="container col-12 text-center">
-                <h1 data-v-2b20e1ea id="mainh1">
-                  {t("STATS.1")}
+                <h1 data-v-2b20e1ea id="mainh1"
+                
+                >
+                <b
+                style={{fontFamily:"Jost"}}
+                >{t("STATS.1")}</b>  
                 </h1>
                 <p
                   data-v-2b20e1ea

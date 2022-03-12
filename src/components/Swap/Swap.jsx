@@ -390,6 +390,8 @@ const Swap = ({setOneTokenPrice}) => {
       // tenPercentVal = web3.utils.fromWei(tenPercentVal);
       let miniumrcvdDrip = (myValFormul * tenPercentVal) / 100;
       let percentValue = tenPercentVal - miniumrcvdDrip;
+      setWithoutToFixed(percentValue);
+
       percentValue = parseFloat(percentValue).toFixed(7);
       tenPercentVal = parseFloat(tenPercentVal).toFixed(7);
 
@@ -433,6 +435,8 @@ const Swap = ({setOneTokenPrice}) => {
       // tenPercentVal = web3.utils.fromWei(tenPercentVal);
       let miniumrcvdDrip = (myValFormul * tenPercentVal) / 100;
       let percentValue = tenPercentVal - miniumrcvdDrip;
+      setWithoutToFixed(percentValue);
+
       percentValue = parseFloat(percentValue).toFixed(7);
       tenPercentVal = parseFloat(tenPercentVal).toFixed(7);
 
@@ -469,13 +473,12 @@ const Swap = ({setOneTokenPrice}) => {
         .getTokenToBnbInputPrice(myvalue)
         .call();
       tokensOutputPrice = web3.utils.fromWei(tokensOutputPrice);
-
       let tenPercentVal = (tokensOutputPrice * 10) / 100;
       tenPercentVal = tokensOutputPrice - tenPercentVal;
-      setWithoutToFixed(tokensOutputPrice);
       // tenPercentVal = web3.utils.fromWei(tenPercentVal);
       let miniumrcvdDrip = (tripType1 * tenPercentVal) / 100;
       let percentValue = tenPercentVal - miniumrcvdDrip;
+      setWithoutToFixed(percentValue);
       percentValue = parseFloat(percentValue).toFixed(7);
       tenPercentVal = parseFloat(tenPercentVal).toFixed(7);
 
@@ -522,6 +525,8 @@ const Swap = ({setOneTokenPrice}) => {
           // tenPercentVal = web3.utils.fromWei(tenPercentVal);
           let miniumrcvdDrip = (iEntered * tenPercentVal) / 100;
           let percentValue = tenPercentVal - miniumrcvdDrip;
+      setWithoutToFixed(percentValue);
+
           percentValue = parseFloat(percentValue).toFixed(7);
           tenPercentVal = parseFloat(tenPercentVal).toFixed(7);
 
@@ -572,6 +577,8 @@ const Swap = ({setOneTokenPrice}) => {
 
       let miniumrcvdDrip = (myValFormul * tenPercentVal) / 100;
       let percentValue = tenPercentVal - miniumrcvdDrip;
+      setWithoutToFixed(percentValue);
+      
       percentValue = parseFloat(percentValue).toFixed(7);
       tenPercentVal = parseFloat(tenPercentVal);
       tokensOutputPrice = parseFloat(tokensOutputPrice).toFixed(7);
@@ -654,13 +661,13 @@ const Swap = ({setOneTokenPrice}) => {
 
     await enterBuyAmount2();
     try {
-      const web3 = window.web3;
       let acc = await loadWeb3();
+      const web3 = window.web3;
      
       let myvalue = inputE2.current.value;
       myvalue = parseFloat(myvalue);
-
-
+      // minRecievedDrip
+      
       if (myvalue >= 1) {
         let tokenContractOf = new web3.eth.Contract(faucetTokenAbi, faucetTokenAddress);
           
@@ -675,9 +682,8 @@ const Swap = ({setOneTokenPrice}) => {
 
             if (parseFloat(myAllowance) >= parseFloat(myvalue1)) {
           
-
-              let parameter = web3.utils.toWei(withouttofixed);
-
+              let val = withouttofixed.toString()
+              let parameter = web3.utils.toWei(val);
 
               let contractOf = new web3.eth.Contract(
                 fountainContractAbi,
@@ -687,7 +693,6 @@ const Swap = ({setOneTokenPrice}) => {
               if (parameter > 0) {
                 let c = bigInt(myvalue1);
                 c = c.value.toString();
-               let trHash = ""
                 await contractOf.methods
                   .tokenToBnbSwapInput(myvalue1, parameter)
                   .send({
@@ -775,7 +780,7 @@ const Swap = ({setOneTokenPrice}) => {
         );
             
            
-
+        setisToogle(true);
               await tokenContractOf.methods
                 .approve(fountainContractAddress, web3.utils.toWei(myvalue1))
                 .send({
@@ -814,7 +819,8 @@ const Swap = ({setOneTokenPrice}) => {
                       <div className="col">
                         <span className="luck-title  notranslate fw-bold">
                           {/* {t("FOUNTAIN.1")} */}
-                          {t("TheWell.1")}
+                          <b style={{fontFamily:"Jost"}}>{t("TheWell.1")}</b>
+                          
                         </span>
                       </div>
                     </div>
@@ -839,7 +845,7 @@ const Swap = ({setOneTokenPrice}) => {
                           {t("AVAX/Splash.1")} {division}
                         </span>
                       </p>
-                      <p className="text-small fst-italic">
+                      <p className="text-small fst-italic" style={{ backgroundColor: "#4e2e4b" }}>
                         {t("AVAX/Splash.1")} ≈ {oneDripPrice} {t("USDT.1")}
                       </p>
                     </div>
@@ -861,7 +867,7 @@ const Swap = ({setOneTokenPrice}) => {
                           {cBnbBalance}
                         </span>
                       </p>
-                      <p className="text-small fst-italic">
+                      <p className="text-small fst-italic" style={{ backgroundColor: "#4e2e4b" }}>
                         {t("AVAX.1")} ≈{bnbPrice} {t("USDT.1")}
                       </p>
                     </div>
@@ -883,7 +889,7 @@ const Swap = ({setOneTokenPrice}) => {
                           {cDripBalance}
                         </span>
                       </p>
-                      <p className="text-small fst-italic">
+                      <p className="text-small fst-italic" style={{ backgroundColor: "#4e2e4b" }}>
                         {t("Splash.1")} ≈{dripUsdtprice}
                         {t("USDT.1")}
                       </p>
@@ -1434,7 +1440,12 @@ const Swap = ({setOneTokenPrice}) => {
               <div className="container col-12 text-center">
                 <div className="row mb-4 mt-2">
                   <div className="container col-12 text-center ">
-                    <h1 className="fw-bold">{t("Chart.1")}</h1>
+                    <h1 className="fw-bold">
+                      <b style={{fontFamily:"Jost"}}>
+
+                      {t("Chart.1")}
+                      </b>
+                      </h1>
                   </div>
 
                   {/* <div id="chartContainer" style={{height: '370px', width: '100%'}}><div className="canvasjs-chart-container" style={{position: 'relative', textAlign: 'left', cursor: 'auto', direction: 'ltr'}}><canvas className="canvasjs-chart-canvas" width={1140} height={370} style={{position: 'absolute', userSelect: 'none'}} /><canvas className="canvasjs-chart-canvas" width={1140} height={370} style={{position: 'absolute', WebkitTapHighlightColor: 'transparent', userSelect: 'none', cursor: 'default'}} /><div className="canvasjs-chart-toolbar" style={{position: 'absolute', right: '1px', top: '1px', border: '1px solid transparent'}}><button state="pan" type="button" title="Pan" style={{display: 'none', backgroundColor: 'white', color: 'black', borderTop: 'none', borderRight: '1px solid rgb(33, 150, 243)', borderBottom: 'none', borderLeft: 'none', borderImage: 'initial', userSelect: 'none', padding: '5px 12px', cursor: 'pointer', float: 'left', width: '40px', height: '25px', outline: '0px', verticalAlign: 'baseline', lineHeight: 0}}><img style={{height: '95%', pointerEvents: 'none'}} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAICSURBVEhLxZbPahNRGMUn/5MpuAiBEAIufQGfzr5E40YptBXajYzudCEuGqS+gGlrFwquDGRTutBdYfydzJ3LzeQmJGZue+Dw/Z17Mnfmu5Pof9Hr9Z61Wq0bWZMKj263O6xWq99wU9lOpzPMKgEhEcRucNOcioOK+0RzBhNvt9tPV4nmVF19+OWhVqt9xXgFXZq+8lCv119UKpUJ7iX2FmvFTKz8RH34YdBsNk8wVtjE4fGYwm8wrrDi3WBG5oKXZGRSS9hGuNFojLTe2lFz5xThWZIktayyiE2FdT3rzXBXz7krKiL8c17wAKFDjCus2AvW+YGZ9y2JF0VFRuMPfI//rsCE/C+s26s4gQu9ul7r4NteKx7H8XOC724xNNGbaNu++IrBqbOV7Tj3FgMRvc/YKOr3+3sE47wgEt/Bl/gaK5cHbNU11vYSXylfpK7XOvjuumPp4Wcoipu30Qsez2uMXYz4lfI+mOmwothY+SLiXJy7mKVpWs3Si0CoOMfeI9Od43Wic+jO+ZVv+crsm9QSNhUW9LXSeoPBYLXopthGuFQgdIxxhY+UDwlt1x5CZ1hX+NTUdt/OIvjKaDSmuOJfaIVNPKX+W18j/PLA2/kR44p5Sd8HbHngT/yTfNRWUXX14ZcL3wmX0+TLf8YO7CGT8yFE5zB3/gney25/OETRP9CtPDFe5jShAAAAAElFTkSuQmCC" alt="Pan" /></button><button state="reset" type="button" title="Reset" style={{display: 'none', backgroundColor: 'white', color: 'black', borderTop: 'none', borderRight: '0px solid rgb(33, 150, 243)', borderBottom: 'none', borderLeft: 'none', borderImage: 'initial', userSelect: 'none', padding: '5px 12px', cursor: 'pointer', float: 'left', width: '40px', height: '25px', outline: '0px', verticalAlign: 'baseline', lineHeight: 0}}><img style={{height: '95%', pointerEvents: 'none'}} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAeCAYAAABJ/8wUAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPjSURBVFhHxVdJaFNRFP1J/jwkP5MxsbaC1WJEglSxOFAXIsFpVRE3ggi1K90obioRRBA33XXnQnciirhQcMCdorgQxBkXWlREkFKsWkv5npvckp/XnzRpKh64kLw733fffe9L/wrL0+mVUdO8uTSZ3MBL/we2qg4rkuSpodCELstXE46ziVkLQ6FQcGOmeSSq6wd4aV50d3drWjj8kQKZJTUc9kxFGenv79dZrDksTSTWWJp2QYtEPiErysyzdX0LsxsCQR8keX8gs6RHIk8ysdgKFg2G53mhuOPsshTlBjKaFo1g7SqLNoShKLdFXT8huQ/paLSbxatYnc2mHMM4hr18Vi8TIvCmXF3vYrW6cF23gGTOk0M1wA4RKvOmq6vLZRVJipvmSWT6tZ6CSEYkco5V50VPT4+D7RwOqi6RiSZm0fJ+vggSqkeoypdsNmuyelNwbXsbgvkWYMtzDWNvWaijoyOBqE+hVK8abcssUeXQ/YfKyi0gFYv1Ipgfoj34fYGTJLOYJA0ODirok32GLN8XhUWCwSes1hIwBg6LydJ/tEeRRapAdUp+wSAiZchtZZWWgAZ+JNpD8peYXQVK9UwUxNpzOK8pq97kURZhYTCKBwPD7h2zK+js7Myi7D8Fod+0TkMI8+EMAngLGc/WtBFWawkFHFnoj/t9KLgGmF0B3QfkxC+EarxkdhnFYlFLY06USqUwL7UMjICHfh/wOc2sCqhpxGbCkLvL7EUDbF73+6DkmVWB6zi7xUDQSLeYvWjAILvm9zEnkJhlbRcDQZcv6Kg2AipyT/Axw6wKlqVSqxDdjF8Izfod13qURdrG/nxehY+xGh+h0CSzKygGvSNQIcc097BI24jb9hax6kj2E7OrMFX1il+ICEf2NrPbhiXLl+fYl+U7zK4iYdsDcyLGf+ofFlkwcN+s10KhmpuYhhtm0hCLVIFL0MDsqNlDIqy9x2CLs1jL6OvrI7vPRbtohXG6eFmsFnHDGAp6n9AgyuVySRZrGvROxRgIfLXhzjrNYnNBUxNX/dMgRWT1mt4XLDovaApD53E9W3ilNX5M55LJHpRtIsgAvciR4WWcgK2Dvb1YqgXevmF8z2zEBTcKG39EfSKsT9EbhVUaI2FZO+oZIqImxol6j66/hcAu4sSN4vc1ZPoKeoE6RGhYL2YYA+ymOSSi0Z0wWntbtkGUWCvfSDXIxONraZ/FY90KUfNTpfC5spnNLgxoYNnR9RO4F8ofXEHOgogCQE99w+fF2Xw+b7O59rEOsyRqGEfpVoaDMQQ1CZrG46bcM6AZ0C/wPqNfHliqejyTySxh9TqQpL+xmbIlkB9SlAAAAABJRU5ErkJggg==" alt="Reset" /></button></div><div className="canvasjs-chart-tooltip" style={{position: 'absolute', height: 'auto', boxShadow: 'rgba(0, 0, 0, 0.1) 1px 1px 2px 2px', zIndex: 1000, pointerEvents: 'none', display: 'none', borderRadius: '5px'}}><div style={{width: 'auto', height: 'auto', minWidth: '50px', lineHeight: 'auto', margin: '0px 0px 0px 0px', padding: '5px', fontFamily: 'Calibri, Arial, Georgia, serif', fontWeight: 'normal', fontStyle: 'italic', fontSize: '14px', color: '#000000', textShadow: '1px 1px 1px rgba(0, 0, 0, 0.1)', textAlign: 'left', border: '2px solid gray', background: 'rgba(255,255,255,.9)', textIndent: '0px', whiteSpace: 'nowrap', borderRadius: '5px', MozUserSelect: 'none', KhtmlUserSelect: 'none', WebkitUserSelect: 'none', msUserSelect: 'none', userSelect: 'none'}}> Sample Tooltip</div></div><a className="canvasjs-chart-credit" title="JavaScript Charts" style={{outline: 'none', margin: '0px', position: 'absolute', right: 'auto', top: '356px', color: 'dimgrey', textDecoration: 'none', fontSize: '11px', fontFamily: 'Calibri, "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif'}} tabIndex={-1} target="_blank" href="https://canvasjs.com/">CanvasJS.com</a></div></div> */}
@@ -1446,7 +1457,12 @@ const Swap = ({setOneTokenPrice}) => {
             </div>
             <div className="row mb-4 mt-2">
               <div className="container col-12 text-center">
-                <h1 className="fw-bold">{t("Stats.1")}</h1>
+                <h1 className="fw-bold">
+                  <b style={{fontFamily:"Jost"}}>
+
+                  {t("Stats.1")}
+                  </b>
+                  </h1>
                 <p style={{ color: "white", fontSize: "20px" }}>
                   {t(
                     "TheWellisthebestwaytoexchangevalueintheSplashNetwork!Herearethenumbers.1"

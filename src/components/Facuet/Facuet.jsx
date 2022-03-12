@@ -961,7 +961,10 @@ const Facuet = ({ oneTokenPrice }) => {
                     <div className="row">
                       <div className="col">
                         <span className="luck-title fw-bold notranslate">
+                          <b style={{fontFamily:"Jost"}}>
+
                           {t("THETAP.1")}
+                          </b>
                         </span>
                       </div>
                     </div>
@@ -2066,7 +2069,7 @@ const Facuet = ({ oneTokenPrice }) => {
                   {t(
                     "IfthereiseverasituationwherethetaxpoolisnotenoughtopaySplashrewardsnewSplashwillbemintedtoensurerewardsarepaidout.GiventhegametheorybehindtheSplashnetwork,theprobabilitythatthesystemwillneedtomintnewSplashtopayrewardsisextremelylow.SinceSplashdepositedintoTheTaparesenttoaburnaddressandSplashisconstantlybeinglockedintheliquiditypoolthroughtheTheShorecontract,SplashistheonlydeflationarydailyROIplatform.ThebeststrategyforSplashistofocusonrealworldadoptionbybuildingoutyourteamthroughdirectreferrals,asyouwillreceivebonusrewardsfromreferralsontheirdepositsanddownlinebonusesfromplayerstheyreferbasedontheamountofWAVETokenheldinyourwallet.1"
                   )}
-                  : 1-5000, 2-10000, 3-200000, 4-30000, 5-400000, 6-500000, 7-600000, 8-750000, 9-850000, 10-100000, 11-1100000, 12-1200000, 13-135000, 14-190000,              
+                  : 1-5000, 2-10000, 3-20000, 4-30000, 5-40000, 6-50000, 7-60000, 8-75000, 9-85000, 10-100000, 11-110000, 12-120000, 13-135000, 14-190000, 15-200000              
                 </p>
               </div>
             </div>
