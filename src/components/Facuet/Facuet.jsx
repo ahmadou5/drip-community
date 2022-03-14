@@ -1090,10 +1090,12 @@ const Facuet = ({ oneTokenPrice }) => {
                       to="/TheWELL" >
                       {t("GetSplash.1")}
                     </Link>
-                    <a target="_blank" href="https://www.youtube.com/watch?v=TOJg308iREw" style={{ color: "#7c625a", fontSize: "19px" }}>
-                      {" "}
-                      {t("Tutorial.1")}
-                    </a>
+                    <Link 
+                    style={{ color: "#7c625a", fontSize: "19px" }}
+                    to="/tutorial"
+                    >
+                    {t("Tutorial.1")}
+                    </Link>
                   </div>
                 </div>
                 <div className="card text-white" style={{ backgroundColor: "#4e2e4b", color: "#dacc79", border: "2px solid #4e2e4b" }}>
