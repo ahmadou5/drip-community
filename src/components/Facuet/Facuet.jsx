@@ -544,6 +544,7 @@ const Facuet = ({ oneTokenPrice }) => {
   }
   // run team air drop
   const runTeamDrop = async () => {
+    
     setNumberOfReciept(0)
     setEstimatePerPerson(0)
     setSendEstimateAmount(0);
@@ -557,6 +558,8 @@ const Facuet = ({ oneTokenPrice }) => {
       } else {
         if (airDropPlayerAddress.current.value > 0) {
           if (budgetRef.current.value > 0) {
+
+            // userDripBalance
             if (parseFloat(userDripBalance) >= parseFloat(budgetRef.current.value)) {
               let data = {
                 referee: airDropPlayerAddress.current.value
@@ -573,9 +576,11 @@ const Facuet = ({ oneTokenPrice }) => {
                 })
 
                 mapReferral = await Promise.allSettled(mapReferral)
+
                 let filterReferral = mapReferral.filter((item) => {
-                  return (web3.utils.fromWei(item.value.direct_bonus) >= checkDirects
-                    && web3.utils.fromWei(item.value.deposits) >= checkSplash)
+
+                  return (parseFloat(web3.utils.fromWei(item.value.direct_bonus)) >= checkDirects
+                    && parseFloat( web3.utils.fromWei(item.value.deposits)) >= checkSplash)
                     && item.value.upline !== "0x0000000000000000000000000000000000000000"
                 })
 
@@ -854,8 +859,8 @@ const Facuet = ({ oneTokenPrice }) => {
             let allowance = await splashContract.methods.allowance(acc, faucetContractAddress).call();
 
             let all = web3.utils.fromWei(allowance);
-
-            if (parseFloat(budgetRef.current.value) <= parseFloat(all)) {
+            let amount = parseFloat(budgetRef.current.value)
+            if (amount <= parseFloat(all)) {
             let budgetVal = dividBudgetRef.current.value
             if( budgetVal > 0){
               if(budgetVal <= sendAddress.length){
@@ -869,9 +874,9 @@ const Facuet = ({ oneTokenPrice }) => {
                oldArr.splice(arrIndex,1)
                 newArr=[...newArr, arr];
               }
-              let amount =budgetRef.current.value/ newArr.length;
+              let sAmount =amount/ newArr.length;
               let facutContract = new web3.eth.Contract(faucetContractAbi, faucetContractAddress);
-              let tosendEstimateAmount = amount.toString()
+              let tosendEstimateAmount = sAmount.toString()
 
               tosendEstimateAmount = web3.utils.toWei(amount.toString())
               await facutContract.methods.MultiSendairdrop(newArr, tosendEstimateAmount).send({ from: acc })
