@@ -47,7 +47,7 @@ function App() {
           />} />
           <Route exact path="/THESHORE" element={<Reservoir />} />
           <Route exact path="/swap" element={<BuySplash/>}/>
-          <Route exact path="/whitepaper" element={<WhitePaper/>}  />
+          {/* <Route exact path="/whitepaper" element={<WhitePaper/>}  /> */}
           <Route exact path="/tutorial" element={<Tutorial/>} />
         </Routes>
         <Footer />
