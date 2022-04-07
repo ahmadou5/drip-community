@@ -13,11 +13,11 @@ import Tutorial from "./components/tutorail/Tutorial";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Reservoir from "./components/Reservoir/Reservoir";
 
-import Home from "./Home";
+
 import BuySplash from "./components/BuySplash/BuySplash"
 import { useTranslation } from "react-i18next";
 function App() {
-  const { t, i18n } = useTranslation();
+  
   let [oneTokenPrice, setOneTokenPrice]=useState(0);
 
   useEffect(() => {
