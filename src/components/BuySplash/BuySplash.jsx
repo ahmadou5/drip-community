@@ -1,11 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useTranslation } from "react-i18next";
-import { PreSallAddress, PresallAbi ,xtokenAdd, xtokenAbi, ntokenAdd, ntokenAbi } from '../utils/preSall';
-import { faucetContractAddress, faucetContractAbi, faucetTokenAddress, faucetTokenAbi } from "../utils/Faucet";
 import { loadWeb3 } from "../api";
 import Web3 from "web3";
-import { ToastContainer, toast } from 'react-toastify';
-import bigInt from "big-integer";
+import { toast } from 'react-toastify';
 // import { useTranslation } from "react-i18next";
 
 
@@ -16,13 +13,7 @@ let webSupply = new Web3("https://api.avax.network/ext/bc/C/rpc");
 
 function BuySplash() {
     // const { t, i18n } = useTranslation();
-    let [calsplash, setcalSplash] = useState(0)
-    let [balanceOf, setbalanceOf] = useState(0)
-    let [CheckWhiteList, setCheckWhiteList] = useState([])
-    let [OnChangeValue, setOnChangeValue] = useState(0)
-    let [hardcap, sethardcap] = useState('Checking...')
-    let [softcap, setsoftcap] = useState('Checking...')
-
+ 
 
 
 
