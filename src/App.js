@@ -4,18 +4,15 @@ import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { render } from "react-dom";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Main from "./components/Main/Main";
 import Swap from "./components/Swap/Swap";
 import Facuet from "./components/Facuet/Facuet";
-import WhitePaper from "./components/whitePaper/WhitePaper";
 import Tutorial from "./components/tutorail/Tutorial";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Reservoir from "./components/Reservoir/Reservoir";
-import WaterWave from "react-water-wave";
-import bg1 from "./images/bg1.jpg";
+
 import Home from "./Home";
 import BuySplash from "./components/BuySplash/BuySplash"
 import { useTranslation } from "react-i18next";
